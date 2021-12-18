@@ -157,7 +157,8 @@ namespace DuckDNS.NET
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show("DuckDNS.NET a GUI client for DuckDNS service\r\n\n" +
-                            "Developed by Max Rodríguez (2014).\r\n\n" +
+                            "v1.1\r\n\n" +
+                            "Based on version by Max Rodríguez (2014).\r\n\n" +
                             "Check Source: https://bitbucket.org/Jaxmetalmax/duckdns.net",
                             "DuckDNS.NET GUI Client.",
                             MessageBoxButtons.OK,MessageBoxIcon.Information);
