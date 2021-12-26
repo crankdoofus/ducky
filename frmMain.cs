@@ -163,7 +163,7 @@ namespace DuckDNS.NET
             var timestamp = Properties.Resources.BuildTimeStamp;
 
             MessageBox.Show("DuckDNS.NET a GUI client for DuckDNS service" +
-                            "\r\nVersion: " + timestamp +
+                            "\r\nBuild timestamp: " + timestamp +
                             "\r\nBased on version by Max Rodríguez (2014)." +
                             "\r\nCheck Source: https://bitbucket.org/Jaxmetalmax/duckdns.net",
                             "DuckDNS.NET GUI Client." , 
