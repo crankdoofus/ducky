@@ -3,7 +3,7 @@
 Borrowed from https://bitbucket.org/Jaxmetalmax/duckdns.net/src/master/ commit 2bb1214
 
 ToDo:
-* Add build timestamp in about
+* DONE - Add build timestamp in about
 * Add Auto detect option to IP selection
 * Show last status and last checked time in Table
 * Show delete option in table instead of first column
