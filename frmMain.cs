@@ -200,5 +200,10 @@ namespace DuckDNS.NET
             }
             catch { return null; }
         }
+
+        private void btnAutoIP_Click(object sender, EventArgs e)
+        {
+            txtIP.Text = getExternalIP();
+        }
     }
 }

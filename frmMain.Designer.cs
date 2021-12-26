@@ -46,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabDomains = new System.Windows.Forms.TabPage();
+            this.btnAutoIP = new System.Windows.Forms.Button();
             this.txtIP = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.dgDomains = new System.Windows.Forms.DataGridView();
@@ -206,9 +207,11 @@
             this.pictureBox1.Size = new System.Drawing.Size(160, 170);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+
             // 
             // tabDomains
             // 
+            this.tabDomains.Controls.Add(this.btnAutoIP);
             this.tabDomains.Controls.Add(this.txtIP);
             this.tabDomains.Controls.Add(this.label6);
             this.tabDomains.Controls.Add(this.dgDomains);
@@ -225,11 +228,21 @@
             this.tabDomains.Text = "Domains";
             this.tabDomains.UseVisualStyleBackColor = true;
             // 
+            // btnAutoIP
+            // 
+            this.btnAutoIP.Location = new System.Drawing.Point(297, 58);
+            this.btnAutoIP.Name = "btnAutoIP";
+            this.btnAutoIP.Size = new System.Drawing.Size(83, 23);
+            this.btnAutoIP.TabIndex = 7;
+            this.btnAutoIP.Text = "< Auto Detect";
+            this.btnAutoIP.UseVisualStyleBackColor = true;
+            this.btnAutoIP.Click += new System.EventHandler(this.btnAutoIP_Click);
+            // 
             // txtIP
             // 
             this.txtIP.Location = new System.Drawing.Point(62, 59);
             this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(318, 20);
+            this.txtIP.Size = new System.Drawing.Size(220, 25);
             this.txtIP.TabIndex = 3;
             this.toolTipInfo.SetToolTip(this.txtIP, "    You can set an IP for the domain\r\nIf blank, the IP is set by your public IP");
             // 
@@ -318,7 +331,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 300000;
+            this.timer1.Interval = 5;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label7
@@ -357,6 +370,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -411,6 +425,7 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ToolTip toolTipInfo;
         private System.Windows.Forms.Label lblExtIP;
+        private System.Windows.Forms.Button btnAutoIP;
     }
 }
 
