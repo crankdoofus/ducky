@@ -22,6 +22,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DuckDNS.NET.Properties;
 using Newtonsoft.Json;
+using System.Diagnostics;
+using System.Reflection;
 
 namespace DuckDNS.NET
 {
@@ -86,10 +88,10 @@ namespace DuckDNS.NET
 
             updateDomains();
         }
-
         private void updateDomains()
         {
             int minutes = Settings.Default.timeLapse / 60000;
+
 
             lblExtIP.Text = "Your IP: " + getExternalIP();
 
@@ -156,11 +158,15 @@ namespace DuckDNS.NET
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("DuckDNS.NET a GUI client for DuckDNS service\r\n\n" +
-                            "v1.1\r\n\n" +
-                            "Based on version by Max Rodríguez (2014).\r\n\n" +
-                            "Check Source: https://bitbucket.org/Jaxmetalmax/duckdns.net",
-                            "DuckDNS.NET GUI Client.",
+            
+            //get build timestamp
+            var timestamp = Properties.Resources.BuildTimeStamp;
+
+            MessageBox.Show("DuckDNS.NET a GUI client for DuckDNS service" +
+                            "\r\nVersion: " + timestamp +
+                            "\r\nBased on version by Max Rodríguez (2014)." +
+                            "\r\nCheck Source: https://bitbucket.org/Jaxmetalmax/duckdns.net",
+                            "DuckDNS.NET GUI Client." , 
                             MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
 
