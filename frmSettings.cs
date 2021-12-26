@@ -22,6 +22,8 @@ namespace DuckDNS.NET
 {
     public partial class frmSettings : Form
     {
+        int currentTimer = 0;
+
         public frmSettings()
         {
             InitializeComponent();
@@ -29,13 +31,19 @@ namespace DuckDNS.NET
 
         private void frmSettings_Load(object sender, EventArgs e)
         {
-           numTime.Value = (decimal) Settings.Default.timeLapse/60000;
+
+            currentTimer = Settings.Default.timeLapse;
+            numTime.Value = Settings.Default.timeLapse;
         }
 
         private void frmSettings_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.Default.timeLapse = (int) numTime.Value*60000;
-            MessageBox.Show("You must restart the app for changes to take effect...");
+            int inputTimer = Convert.ToInt32(Math.Round(numTime.Value, 0));
+
+            if (currentTimer != inputTimer){
+                Settings.Default.timeLapse = inputTimer;            
+                MessageBox.Show("You must restart the app for changes to take effect...");
+            }
         }
     }
 }

@@ -37,23 +37,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(17, 16);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 13);
+            this.label1.Size = new System.Drawing.Size(186, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Time to refresh domains:";
+            this.label1.Text = "Time to refresh domains (min):";
             // 
             // numTime
             // 
-            this.numTime.Location = new System.Drawing.Point(141, 11);
+            this.numTime.Location = new System.Drawing.Point(206, 14);
+            this.numTime.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.numTime.Minimum = new decimal(new int[] {
             5,
             0,
             0,
             0});
             this.numTime.Name = "numTime";
-            this.numTime.Size = new System.Drawing.Size(64, 20);
+            this.numTime.Size = new System.Drawing.Size(85, 22);
             this.numTime.TabIndex = 1;
+            this.numTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numTime.Value = new decimal(new int[] {
             5,
             0,
@@ -62,13 +65,14 @@
             // 
             // frmSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(228, 51);
+            this.ClientSize = new System.Drawing.Size(304, 63);
             this.Controls.Add(this.numTime);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmSettings";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";

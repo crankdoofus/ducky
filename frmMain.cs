@@ -80,7 +80,7 @@ namespace DuckDNS.NET
             dtDomains.Columns.Add("IP");
             dtDomains.Rows.Clear();
             
-            timer1.Interval = Settings.Default.timeLapse;
+            timer1.Interval = Settings.Default.timeLapse * 60000; //Interval is in ms, settings are in minutes, 1 min = 60000 ms
             loadGrid();
             dgDomains.DataSource = dtDomains;
             timer1.Enabled = true;
@@ -90,7 +90,7 @@ namespace DuckDNS.NET
         }
         private void updateDomains()
         {
-            int minutes = Settings.Default.timeLapse / 60000;
+            int minutes = Settings.Default.timeLapse;
 
 
             lblExtIP.Text = "Your IP: " + getExternalIP();

@@ -4,6 +4,7 @@ Borrowed from https://bitbucket.org/Jaxmetalmax/duckdns.net/src/master/ commit 2
 
 ToDo:
 * DONE - Add build timestamp in about
+* DONE - Only ask for reload if timer has actually changed
 * Add Auto detect option to IP selection
 * Show last status and last checked time in Table
 * Show delete option in table instead of first column
