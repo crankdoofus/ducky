@@ -38,6 +38,7 @@ namespace DuckDNS.NET
 
         private static void Download(string cDomain)
         {
+            var wcResponse = "";
             using (var wc = new WebClient())
             {
                 wc.DownloadStringCompleted += (sender, e) =>
@@ -49,8 +50,9 @@ namespace DuckDNS.NET
                         Console.WriteLine(url);
                     }   
                 };
+                // if successful wcResponse is OK, else KO
+                wcResponse = wc.DownloadString(new Uri(cDomain));
 
-                wc.DownloadStringAsync(new Uri(cDomain));
             }             
         }
 
