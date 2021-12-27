@@ -40,6 +40,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.label8 = new System.Windows.Forms.Label();
             this.lblAbout = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblExtIP = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -170,6 +170,26 @@
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
             // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(200, 150);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(234, 13);
+            this.linkLabel2.TabIndex = 8;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "https://bitbucket.org/Jaxmetalmax/duckdns.net";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(200, 137);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(215, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Based on version by Max Rodríguez (2014).";
+            // 
             // lblAbout
             // 
             this.lblAbout.AutoSize = true;
@@ -215,6 +235,7 @@
             this.linkLabel1.TabIndex = 2;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "https://duckdns.org";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label1
             // 
@@ -392,25 +413,6 @@
             // 
             this.toolTipInfo.IsBalloon = true;
             this.toolTipInfo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(200, 137);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(215, 13);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Based on version by Max Rodríguez (2014).";
-            // 
-            // linkLabel2
-            // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(200, 150);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(234, 13);
-            this.linkLabel2.TabIndex = 8;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "https://bitbucket.org/Jaxmetalmax/duckdns.net";
             // 
             // frmMain
             // 

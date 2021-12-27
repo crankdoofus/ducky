@@ -84,7 +84,7 @@ private static void Download(string cDomain)
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            this.Text = "Ducky";
             dgDomains.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
             dgDomains.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
             dgDomains.ColumnHeadersDefaultCellStyle.Font = new Font(dgDomains.Font, FontStyle.Bold);
@@ -244,6 +244,16 @@ timer1.Enabled = true;
         private void btnAutoIP_Click(object sender, EventArgs e)
         {
             txtIP.Text = getExternalIP();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://bitbucket.org/Jaxmetalmax/duckdns.net");
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://www.duckdns.org/");
         }
     }
 }
