@@ -40,27 +40,32 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabMain = new System.Windows.Forms.TabPage();
+            this.lblAbout = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblExtIP = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabDomains = new System.Windows.Forms.TabPage();
-            this.btnAutoIP = new System.Windows.Forms.Button();
-            this.txtIP = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.dgDomains = new System.Windows.Forms.DataGridView();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.deleteDomainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAutoIP = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.txtToken = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtDomain = new System.Windows.Forms.TextBox();
+            this.txtIP = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtToken = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -68,6 +73,7 @@
             this.tabDomains.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDomains)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // myNotifyIcon
@@ -85,7 +91,7 @@
             this.aboutToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(399, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(564, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -100,7 +106,7 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.exitToolStripMenuItem.Text = "E&xit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -109,7 +115,7 @@
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
             // 
             // settingsToolStripMenuItem
@@ -130,7 +136,7 @@
             // 
             this.statusStrip1.Location = new System.Drawing.Point(0, 290);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(399, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(564, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -142,11 +148,15 @@
             this.tabControl.Location = new System.Drawing.Point(0, 24);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(399, 266);
+            this.tabControl.Size = new System.Drawing.Size(564, 266);
             this.tabControl.TabIndex = 2;
             // 
             // tabMain
             // 
+            this.tabMain.Controls.Add(this.linkLabel2);
+            this.tabMain.Controls.Add(this.label8);
+            this.tabMain.Controls.Add(this.lblAbout);
+            this.tabMain.Controls.Add(this.label3);
             this.tabMain.Controls.Add(this.lblExtIP);
             this.tabMain.Controls.Add(this.label2);
             this.tabMain.Controls.Add(this.linkLabel1);
@@ -155,15 +165,33 @@
             this.tabMain.Location = new System.Drawing.Point(4, 22);
             this.tabMain.Name = "tabMain";
             this.tabMain.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMain.Size = new System.Drawing.Size(391, 240);
+            this.tabMain.Size = new System.Drawing.Size(556, 240);
             this.tabMain.TabIndex = 0;
             this.tabMain.Text = "Main";
             this.tabMain.UseVisualStyleBackColor = true;
             // 
+            // lblAbout
+            // 
+            this.lblAbout.AutoSize = true;
+            this.lblAbout.Location = new System.Drawing.Point(200, 189);
+            this.lblAbout.Name = "lblAbout";
+            this.lblAbout.Size = new System.Drawing.Size(45, 13);
+            this.lblAbout.TabIndex = 6;
+            this.lblAbout.Text = "lblAbout";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(200, 98);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Your External IP";
+            // 
             // lblExtIP
             // 
             this.lblExtIP.AutoSize = true;
-            this.lblExtIP.Location = new System.Drawing.Point(201, 129);
+            this.lblExtIP.Location = new System.Drawing.Point(300, 98);
             this.lblExtIP.Name = "lblExtIP";
             this.lblExtIP.Size = new System.Drawing.Size(16, 13);
             this.lblExtIP.TabIndex = 4;
@@ -171,18 +199,17 @@
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(195, 59);
+            this.label2.Location = new System.Drawing.Point(197, 45);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 66);
+            this.label2.Size = new System.Drawing.Size(300, 41);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Duck DNS \r\nGUI Client";
+            this.label2.Text = "Duck DNS GUI Client";
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(8, 206);
+            this.linkLabel1.Location = new System.Drawing.Point(64, 189);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(102, 13);
             this.linkLabel1.TabIndex = 2;
@@ -207,53 +234,18 @@
             this.pictureBox1.Size = new System.Drawing.Size(160, 170);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-
             // 
             // tabDomains
             // 
-            this.tabDomains.Controls.Add(this.btnAutoIP);
-            this.tabDomains.Controls.Add(this.txtIP);
-            this.tabDomains.Controls.Add(this.label6);
             this.tabDomains.Controls.Add(this.dgDomains);
-            this.tabDomains.Controls.Add(this.btnAdd);
-            this.tabDomains.Controls.Add(this.txtToken);
-            this.tabDomains.Controls.Add(this.label5);
-            this.tabDomains.Controls.Add(this.txtDomain);
-            this.tabDomains.Controls.Add(this.label4);
+            this.tabDomains.Controls.Add(this.groupBox1);
             this.tabDomains.Location = new System.Drawing.Point(4, 22);
             this.tabDomains.Name = "tabDomains";
             this.tabDomains.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDomains.Size = new System.Drawing.Size(391, 240);
+            this.tabDomains.Size = new System.Drawing.Size(556, 240);
             this.tabDomains.TabIndex = 1;
             this.tabDomains.Text = "Domains";
             this.tabDomains.UseVisualStyleBackColor = true;
-            // 
-            // btnAutoIP
-            // 
-            this.btnAutoIP.Location = new System.Drawing.Point(297, 58);
-            this.btnAutoIP.Name = "btnAutoIP";
-            this.btnAutoIP.Size = new System.Drawing.Size(83, 23);
-            this.btnAutoIP.TabIndex = 7;
-            this.btnAutoIP.Text = "< Auto Detect";
-            this.btnAutoIP.UseVisualStyleBackColor = true;
-            this.btnAutoIP.Click += new System.EventHandler(this.btnAutoIP_Click);
-            // 
-            // txtIP
-            // 
-            this.txtIP.Location = new System.Drawing.Point(62, 59);
-            this.txtIP.Name = "txtIP";
-            this.txtIP.Size = new System.Drawing.Size(220, 25);
-            this.txtIP.TabIndex = 3;
-            this.toolTipInfo.SetToolTip(this.txtIP, "    You can set an IP for the domain\r\nIf blank, the IP is set by your public IP");
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(9, 62);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(20, 13);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "IP:";
             // 
             // dgDomains
             // 
@@ -262,11 +254,11 @@
             this.dgDomains.AllowUserToResizeRows = false;
             this.dgDomains.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDomains.ContextMenuStrip = this.contextMenuStrip1;
-            this.dgDomains.Location = new System.Drawing.Point(13, 114);
+            this.dgDomains.Location = new System.Drawing.Point(0, 0);
             this.dgDomains.MultiSelect = false;
             this.dgDomains.Name = "dgDomains";
             this.dgDomains.ReadOnly = true;
-            this.dgDomains.Size = new System.Drawing.Size(367, 118);
+            this.dgDomains.Size = new System.Drawing.Size(556, 134);
             this.dgDomains.TabIndex = 5;
             this.toolTipInfo.SetToolTip(this.dgDomains, "To delete or edit Domain \r\n  right click on domain. ");
             // 
@@ -284,50 +276,94 @@
             this.deleteDomainToolStripMenuItem.Text = "Delete Domain";
             this.deleteDomainToolStripMenuItem.Click += new System.EventHandler(this.deleteDomainToolStripMenuItem_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnAutoIP);
+            this.groupBox1.Controls.Add(this.btnAdd);
+            this.groupBox1.Controls.Add(this.txtDomain);
+            this.groupBox1.Controls.Add(this.txtIP);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.txtToken);
+            this.groupBox1.Location = new System.Drawing.Point(14, 141);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(527, 100);
+            this.groupBox1.TabIndex = 8;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Add new domain";
+            // 
+            // btnAutoIP
+            // 
+            this.btnAutoIP.Location = new System.Drawing.Point(322, 70);
+            this.btnAutoIP.Name = "btnAutoIP";
+            this.btnAutoIP.Size = new System.Drawing.Size(83, 23);
+            this.btnAutoIP.TabIndex = 7;
+            this.btnAutoIP.Text = "< Auto Detect";
+            this.btnAutoIP.UseVisualStyleBackColor = true;
+            this.btnAutoIP.Click += new System.EventHandler(this.btnAutoIP_Click);
+            // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(305, 85);
+            this.btnAdd.Location = new System.Drawing.Point(448, 19);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.Size = new System.Drawing.Size(63, 74);
             this.btnAdd.TabIndex = 4;
             this.btnAdd.Text = "Add";
             this.toolTipInfo.SetToolTip(this.btnAdd, "To delete or edit Domain \r\nRight click on the domain \r\nyou want edit or delete. ");
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // txtToken
-            // 
-            this.txtToken.Location = new System.Drawing.Point(62, 33);
-            this.txtToken.Name = "txtToken";
-            this.txtToken.Size = new System.Drawing.Size(318, 20);
-            this.txtToken.TabIndex = 2;
-            this.toolTipInfo.SetToolTip(this.txtToken, "Write the Token for the domain ");
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(9, 36);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 13);
-            this.label5.TabIndex = 2;
-            this.label5.Text = "Token:";
-            // 
             // txtDomain
             // 
-            this.txtDomain.Location = new System.Drawing.Point(62, 7);
+            this.txtDomain.Location = new System.Drawing.Point(87, 19);
             this.txtDomain.Name = "txtDomain";
             this.txtDomain.Size = new System.Drawing.Size(318, 20);
             this.txtDomain.TabIndex = 1;
             this.toolTipInfo.SetToolTip(this.txtDomain, "Write domain name here");
             // 
+            // txtIP
+            // 
+            this.txtIP.Location = new System.Drawing.Point(87, 71);
+            this.txtIP.Name = "txtIP";
+            this.txtIP.Size = new System.Drawing.Size(220, 20);
+            this.txtIP.TabIndex = 3;
+            this.toolTipInfo.SetToolTip(this.txtIP, "    You can set an IP for the domain\r\nIf blank, the IP is set by your public IP");
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(9, 7);
+            this.label4.Location = new System.Drawing.Point(34, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(46, 13);
             this.label4.TabIndex = 0;
             this.label4.Text = "Domain:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(34, 74);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 13);
+            this.label6.TabIndex = 6;
+            this.label6.Text = "IP:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(34, 48);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(41, 13);
+            this.label5.TabIndex = 2;
+            this.label5.Text = "Token:";
+            // 
+            // txtToken
+            // 
+            this.txtToken.Location = new System.Drawing.Point(87, 45);
+            this.txtToken.Name = "txtToken";
+            this.txtToken.Size = new System.Drawing.Size(318, 20);
+            this.txtToken.TabIndex = 2;
+            this.toolTipInfo.SetToolTip(this.txtToken, "Write the Token for the domain ");
             // 
             // timer1
             // 
@@ -357,11 +393,30 @@
             this.toolTipInfo.IsBalloon = true;
             this.toolTipInfo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(200, 137);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(215, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Based on version by Max Rodríguez (2014).";
+            // 
+            // linkLabel2
+            // 
+            this.linkLabel2.AutoSize = true;
+            this.linkLabel2.Location = new System.Drawing.Point(200, 150);
+            this.linkLabel2.Name = "linkLabel2";
+            this.linkLabel2.Size = new System.Drawing.Size(234, 13);
+            this.linkLabel2.TabIndex = 8;
+            this.linkLabel2.TabStop = true;
+            this.linkLabel2.Text = "https://bitbucket.org/Jaxmetalmax/duckdns.net";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(399, 312);
+            this.ClientSize = new System.Drawing.Size(564, 312);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.tabControl);
@@ -385,9 +440,10 @@
             this.tabMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabDomains.ResumeLayout(false);
-            this.tabDomains.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDomains)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -426,6 +482,11 @@
         private System.Windows.Forms.ToolTip toolTipInfo;
         private System.Windows.Forms.Label lblExtIP;
         private System.Windows.Forms.Button btnAutoIP;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblAbout;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.LinkLabel linkLabel2;
     }
 }
 

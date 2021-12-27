@@ -15,15 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using DuckDNS.NET.Properties;
+using Newtonsoft.Json;
 using System;
 using System.Data;
+using System.Drawing;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-using DuckDNS.NET.Properties;
-using Newtonsoft.Json;
-using System.Diagnostics;
-using System.Reflection;
+
 
 namespace DuckDNS.NET
 {
@@ -36,7 +36,7 @@ namespace DuckDNS.NET
 
         private DataTable dtDomains = new DataTable();
 
-        private static void Download(string cDomain)
+private static void Download(string cDomain)
         {
             var wcResponse = "";
             using (var wc = new WebClient())
@@ -84,15 +84,41 @@ namespace DuckDNS.NET
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+
+            dgDomains.ColumnHeadersDefaultCellStyle.BackColor = Color.Navy;
+            dgDomains.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgDomains.ColumnHeadersDefaultCellStyle.Font = new Font(dgDomains.Font, FontStyle.Bold);
+
+            dgDomains.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
+            dgDomains.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgDomains.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+            dgDomains.GridColor = Color.Black;
+            dgDomains.RowHeadersVisible = false;
+            dgDomains.ColumnHeadersVisible = true;
+            dgDomains.AutoResizeColumnHeadersHeight();
+            dgDomains.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgDomains.MultiSelect = false;
+
             dtDomains.Columns.Add("Domain");
             dtDomains.Columns.Add("Token");
             dtDomains.Columns.Add("IP");
+            dtDomains.Columns.Add("Last Check");
+            dtDomains.Columns.Add("Status");
             dtDomains.Rows.Clear();
             
             timer1.Interval = Settings.Default.timeLapse * 60000; //Interval is in ms, settings are in minutes, 1 min = 60000 ms
             loadGrid();
             dgDomains.DataSource = dtDomains;
-            timer1.Enabled = true;
+//            dgDomains.Columns[3].DefaultCellStyle.Font = new Font(dgDomains.DefaultCellStyle.Font, FontStyle.Italic);
+//            dgDomains.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+
+            lblExtIP.Text = getExternalIP();
+            //get build timestamp
+            var timestamp = Properties.Resources.BuildTimeStamp;
+            lblAbout.Text = "Build Timestamp : " + timestamp;
+
+
+timer1.Enabled = true;
             timer1.Start();
 
             updateDomains();
@@ -102,7 +128,6 @@ namespace DuckDNS.NET
             int minutes = Settings.Default.timeLapse;
 
 
-            lblExtIP.Text = "Your IP: " + getExternalIP();
 
             if (dgDomains.RowCount <= 0) return;
             foreach (DataGridViewRow row in dgDomains.Rows)
