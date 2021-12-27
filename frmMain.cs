@@ -50,9 +50,16 @@ namespace DuckDNS.NET
                         Console.WriteLine(url);
                     }   
                 };
-                // if successful wcResponse is OK, else KO
-                wcResponse = wc.DownloadString(new Uri(cDomain));
-
+                try
+                {
+                    // if successful wcResponse is OK, else KO
+                    wcResponse = wc.DownloadString(new Uri(cDomain));
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message);
+                    Console.WriteLine($"Exception : {e}");
+                }
             }             
         }
 
@@ -200,7 +207,13 @@ namespace DuckDNS.NET
                              .Matches(externalIP)[0].ToString();
                 return externalIP;
             }
-            catch { return null; }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message + ", exiting ...");
+                Console.WriteLine($"Exception : {e}");
+                Application.Exit();
+                return null;
+            }
         }
 
         private void btnAutoIP_Click(object sender, EventArgs e)

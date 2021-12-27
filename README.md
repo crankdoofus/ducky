@@ -9,6 +9,7 @@ ToDo:
 * DONE - Add Auto detect option to IP selection
 * Show last status and last checked time in Table
 	- Better error handling when invoking URL
+	- Exception handling
 	- Capture failures from duckdns URL invocation
 * Show delete option in table instead of first column
 * configurable timer
@@ -18,4 +19,3 @@ ToDo:
 * Add systray options - show UI
 * Add as service ?
 * Auto launch on login ?
-
