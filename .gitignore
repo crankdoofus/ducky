@@ -4,6 +4,8 @@
 
 /obj/x86/Debug
 /.vs/
-/bin/Debug
-/bin/Release
 /obj/x86/Release
+/bin/Debug/DuckDNS.NET.exe.config
+/bin/Debug/DuckDNS.NET.pdb
+/bin/Release/DuckDNS.NET.exe.config
+/bin/Release/DuckDNS.NET.pdb
