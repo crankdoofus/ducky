@@ -22,6 +22,7 @@ using System.Data;
 using System.Drawing;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 
@@ -123,8 +124,6 @@ namespace DuckDNS.NET
             tw += 3; //to avoid horizontal scroll bar
             dgDomains.Width = tw;
 
-            mExternalIP = getExternalIP();
-            lblExtIP.Text = mExternalIP;
             //get build timestamp
             var timestamp = Properties.Resources.BuildTimeStamp;
             lblAbout.Text = "Build Timestamp : " + timestamp;
@@ -133,14 +132,22 @@ namespace DuckDNS.NET
             timer1.Enabled = true;
             timer1.Start();
 
-            updateDomains();
+            //update the domains now in a different thread
+            var thread = new Thread(updateDomains);
+            thread.IsBackground = true;
+            thread.Start();
+
             dgDomains.Update();
-            Application.DoEvents(); //to reflect the color of the datagrid
+            Application.DoEvents();
         }
+
+
         private void updateDomains()
         {
             int minutes = Settings.Default.timeLapse;
             bool bAtLeastOneFailure = false;
+            mExternalIP = getExternalIP();
+            lblExtIP.Text = mExternalIP;
 
             if (dgDomains.RowCount <= 0) return;
             foreach (DataGridViewRow row in dgDomains.Rows)
@@ -148,8 +155,6 @@ namespace DuckDNS.NET
                 string strIPToUse = row.Cells[2].Value.ToString();
                 if (row.Cells[2].Value.ToString().Contains("Auto"))
                 {
-                    mExternalIP = getExternalIP();
-                    lblExtIP.Text = mExternalIP; //in case it changed
                     row.Cells[2].Value = "Auto (" + mExternalIP + ")";
                     strIPToUse = mExternalIP;
                 }
