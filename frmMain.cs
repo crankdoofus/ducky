@@ -35,10 +35,13 @@ namespace DuckDNS.NET
         }
 
         private DataTable dtDomains = new DataTable();
+        private string mExternalIP = "";
 
-private static void Download(string cDomain)
+        private static bool UpdateDuckDNS(string cDomain)
         {
-            var wcResponse = "";
+            string wcResponse = "";
+            bool returnValue = false;
+
             using (var wc = new WebClient())
             {
                 wc.DownloadStringCompleted += (sender, e) =>
@@ -54,13 +57,16 @@ private static void Download(string cDomain)
                 {
                     // if successful wcResponse is OK, else KO
                     wcResponse = wc.DownloadString(new Uri(cDomain));
+                    returnValue = wcResponse.Equals("OK") ? true : false;
                 }
                 catch (Exception e)
                 {
                     MessageBox.Show(e.Message);
                     Console.WriteLine($"Exception : {e}");
+                    return returnValue;
                 }
-            }             
+            }
+            return returnValue;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -76,7 +82,7 @@ private static void Download(string cDomain)
                 }
             }
 
-            dtDomains.Rows.Add(txtDomain.Text.Trim(), txtToken.Text.Trim(), txtIP.Text.Trim());
+            dtDomains.Rows.Add(txtDomain.Text.Trim(), txtToken.Text.Trim(), txtIP.Text.Trim(), "","");
             txtDomain.Text = string.Empty;
             txtToken.Text = string.Empty;
             txtIP.Text = string.Empty;
@@ -92,7 +98,7 @@ private static void Download(string cDomain)
             dgDomains.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.DisplayedCellsExceptHeaders;
             dgDomains.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dgDomains.CellBorderStyle = DataGridViewCellBorderStyle.Single;
-            dgDomains.GridColor = Color.Black;
+            dgDomains.GridColor = SystemColors.ActiveBorder;
             dgDomains.RowHeadersVisible = false;
             dgDomains.ColumnHeadersVisible = true;
             dgDomains.AutoResizeColumnHeadersHeight();
@@ -109,34 +115,69 @@ private static void Download(string cDomain)
             timer1.Interval = Settings.Default.timeLapse * 60000; //Interval is in ms, settings are in minutes, 1 min = 60000 ms
             loadGrid();
             dgDomains.DataSource = dtDomains;
-//            dgDomains.Columns[3].DefaultCellStyle.Font = new Font(dgDomains.DefaultCellStyle.Font, FontStyle.Italic);
-//            dgDomains.Columns[4].DefaultCellStyle.BackColor = Color.Red;
+            int tw = 0;
+            for (int i = 0; i < dgDomains.Columns.Count; i++)
+            {
+                tw += dgDomains.Columns[i].Width;
+            }
+            tw += 3; //to avoid horizontal scroll bar
+            dgDomains.Width = tw;
 
-            lblExtIP.Text = getExternalIP();
+            mExternalIP = getExternalIP();
+            lblExtIP.Text = mExternalIP;
             //get build timestamp
             var timestamp = Properties.Resources.BuildTimeStamp;
             lblAbout.Text = "Build Timestamp : " + timestamp;
 
 
-timer1.Enabled = true;
+            timer1.Enabled = true;
             timer1.Start();
 
             updateDomains();
+            Application.DoEvents(); //to reflect the color of the datagrid
         }
         private void updateDomains()
         {
             int minutes = Settings.Default.timeLapse;
-
-
+            bool bAtLeastOneFailure = false;
 
             if (dgDomains.RowCount <= 0) return;
             foreach (DataGridViewRow row in dgDomains.Rows)
             {
+                string strIPToUse = row.Cells[2].Value.ToString();
+                if (row.Cells[2].Value.ToString().Contains("Auto"))
+                {
+                    mExternalIP = getExternalIP();
+                    lblExtIP.Text = mExternalIP; //in case it changed
+                    row.Cells[2].Value = "Auto (" + mExternalIP + ")";
+                    strIPToUse = mExternalIP;
+                }
                 var getdom = string.Format("https://www.duckdns.org/update?domains={0}&token={1}&ip={2}",
-                    row.Cells[0].Value, row.Cells[1].Value, row.Cells[2].Value);
-                Download(getdom);
+                    row.Cells[0].Value, row.Cells[1].Value, strIPToUse);
+                if (UpdateDuckDNS(getdom))
+                {
+                    row.Cells[4].Value = "Success";
+                    row.Cells[4].Style.ForeColor = Color.White;
+                    row.Cells[4].Style.BackColor = Color.Green;
+                }
+                else
+                {
+                    row.Cells[4].Value = "Failure";
+                    row.Cells[4].Style.ForeColor = Color.Red;
+                    row.Cells[4].Style.BackColor = Color.Yellow;
+                    bAtLeastOneFailure = true;
+                }
+                row.Cells[3].Value = DateTime.Now.ToShortTimeString() + " " + DateTime.Now.ToShortDateString(); 
             }
-            lblStatus.Text = "All domains updated...";
+            if (bAtLeastOneFailure)
+            {
+                myNotifyIcon.Icon = Properties.Resources.IconRed; 
+            }
+            else
+            {
+                myNotifyIcon.Icon = Properties.Resources.IconYellow;
+            }
+            lblStatus.Text = "All domains checked..." + "Next check: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(minutes).ToShortTimeString(); ;
             myNotifyIcon.BalloonTipText = "Next update: " + DateTime.Now.AddMinutes(minutes).ToShortTimeString();
             myNotifyIcon.Text = "DuckDNS.NET \r\n Next Update: " +
                                 DateTime.Now.AddMinutes(minutes).ToShortTimeString();
@@ -177,6 +218,7 @@ timer1.Enabled = true;
             int nCell = 0;
 
             if (dgDomains.CurrentRow == null) return;
+/*
             foreach (DataGridViewCell cell in dgDomains.CurrentRow.Cells)
             {
                 row[nCell] = cell.Value.ToString();
@@ -186,7 +228,7 @@ timer1.Enabled = true;
             txtDomain.Text = row[0];
             txtToken.Text = row[1];
             txtIP.Text = row[2];
-
+*/
             dgDomains.Rows.RemoveAt(dgDomains.CurrentRow.Index);
         }
 
@@ -243,7 +285,7 @@ timer1.Enabled = true;
 
         private void btnAutoIP_Click(object sender, EventArgs e)
         {
-            txtIP.Text = getExternalIP();
+            txtIP.Text = "Auto (" + mExternalIP + ")";
         }
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -98,6 +98,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ducky_icon.ico" />
+    <None Include="resources\IconYellow.ico" />
+    <None Include="resources\IconRed.ico" />
     <None Include="resources\BuildTimeStamp.txt" />
     <Content Include="resources\ducky_icon.png" />
   </ItemGroup>

@@ -61,11 +61,32 @@ namespace DuckDNS.NET.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to 27/01/2022 4:31:38 AM UTC
+        ///.
         /// </summary>
         internal static string BuildTimeStamp {
             get {
                 return ResourceManager.GetString("BuildTimeStamp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconRed {
+            get {
+                object obj = ResourceManager.GetObject("IconRed", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon IconYellow {
+            get {
+                object obj = ResourceManager.GetObject("IconYellow", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
             }
         }
     }
