@@ -134,6 +134,7 @@ namespace DuckDNS.NET
             timer1.Start();
 
             updateDomains();
+            dgDomains.Update();
             Application.DoEvents(); //to reflect the color of the datagrid
         }
         private void updateDomains()
