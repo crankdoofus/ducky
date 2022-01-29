@@ -112,30 +112,20 @@ namespace DuckDNS.NET
             dtDomains.Columns.Add("Last Check");
             dtDomains.Columns.Add("Status");
             dtDomains.Rows.Clear();
-            
-            timer1.Interval = Settings.Default.timeLapse * 60000; //Interval is in ms, settings are in minutes, 1 min = 60000 ms
+            dgDomains.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
             loadGrid();
             dgDomains.DataSource = dtDomains;
-            int tw = 0;
-            for (int i = 0; i < dgDomains.Columns.Count; i++)
-            {
-                tw += dgDomains.Columns[i].Width;
-            }
-            tw += 3; //to avoid horizontal scroll bar
-            dgDomains.Width = tw;
 
             //get build timestamp
             var timestamp = Properties.Resources.BuildTimeStamp;
             lblAbout.Text = "Build Timestamp : " + timestamp;
 
-
+            // this triggers timer right away, so external IP and domains are checked
+            // the actual timer is set in updateDomains
+            timer1.Interval = 1000;
             timer1.Enabled = true;
             timer1.Start();
-
-            //update the domains now in a different thread
-            var thread = new Thread(updateDomains);
-            thread.IsBackground = true;
-            thread.Start();
 
             dgDomains.Update();
             Application.DoEvents();
@@ -145,8 +135,14 @@ namespace DuckDNS.NET
         private void updateDomains()
         {
             int minutes = Settings.Default.timeLapse;
+            timer1.Interval = Settings.Default.timeLapse * 60000; //Interval is in ms, settings are in minutes, 1 min = 60000 ms
+
             bool bAtLeastOneFailure = false;
             mExternalIP = getExternalIP();
+            if (mExternalIP==null)
+            {
+                return;
+            }
             lblExtIP.Text = mExternalIP;
 
             if (dgDomains.RowCount <= 0) return;
