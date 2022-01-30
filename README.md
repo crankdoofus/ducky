@@ -12,10 +12,10 @@ ToDo:
 	- Exception handling
 	- Capture failures from duckdns URL invocation
 * Show delete option in table instead of first column
-* configurable timer
-* Hyperlink to the source 
+* configurable timer per domain
+* DONE - Hyperlink to the source 
 * DONE - Color change in case of issues
 	* Amber if any one was bad once 
 * Add systray options - show UI
 * Add as service ?
-* Auto launch on login ?
+DONE - Auto launch on login ?

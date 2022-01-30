@@ -66,6 +66,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.toolTipInfo = new System.Windows.Forms.ToolTip(this.components);
+            this.autoStartOnLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tabMain.SuspendLayout();
@@ -113,7 +114,8 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem});
+            this.settingsToolStripMenuItem,
+            this.autoStartOnLoginToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -121,7 +123,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -414,6 +416,13 @@
             this.toolTipInfo.IsBalloon = true;
             this.toolTipInfo.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             // 
+            // autoStartOnLoginToolStripMenuItem
+            // 
+            this.autoStartOnLoginToolStripMenuItem.Name = "autoStartOnLoginToolStripMenuItem";
+            this.autoStartOnLoginToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.autoStartOnLoginToolStripMenuItem.Text = "Auto Start on Login";
+            this.autoStartOnLoginToolStripMenuItem.Click += new System.EventHandler(this.autoStartOnLoginToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -489,6 +498,7 @@
         private System.Windows.Forms.Label lblAbout;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.ToolStripMenuItem autoStartOnLoginToolStripMenuItem;
     }
 }
 

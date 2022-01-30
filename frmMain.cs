@@ -16,6 +16,7 @@
 */
 
 using DuckDNS.NET.Properties;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Data;
@@ -123,9 +124,11 @@ namespace DuckDNS.NET
 
             // this triggers timer right away, so external IP and domains are checked
             // the actual timer is set in updateDomains
-            timer1.Interval = 1000;
+            timer1.Interval = 100;
             timer1.Enabled = true;
             timer1.Start();
+
+            autoStartOnLoginToolStripMenuItem.Text = IsAddedToStartUp() ? "Remove from auto start on login" : "Add to auto start on login";
 
             dgDomains.Update();
             Application.DoEvents();
@@ -278,7 +281,7 @@ namespace DuckDNS.NET
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message + ", exiting ...");
+                //MessageBox.Show(e.Message + ", exiting ...");
                 Console.WriteLine($"Exception : {e}");
                 Application.Exit();
                 return null;
@@ -298,6 +301,61 @@ namespace DuckDNS.NET
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.duckdns.org/");
+        }
+
+        private bool IsAddedToStartUp()
+        {
+            bool bReturnValue = false;
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey ("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            try
+            {
+                string appPath = (string) registryKey.GetValue("Ducky");                
+                bReturnValue = (string.Equals(appPath,"\"" + Application.ExecutablePath + "\"")) ? true : false;
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                bReturnValue = false;
+            }
+            catch (Exception ex)
+            {
+                bReturnValue = false;
+            }
+
+            return bReturnValue;
+        }
+
+        private bool AddToStartup()
+        {
+            bool bReturnValue = false;
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            if (registryKey != null)
+            {
+                registryKey.SetValue("Ducky", "\"" + Application.ExecutablePath + "\"");
+            }
+
+            return bReturnValue;
+        }
+        public static void RemoveFromStartup()
+        {
+            RegistryKey registryKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            {
+                registryKey.DeleteValue("Ducky", false);
+            }
+        }
+
+        private void autoStartOnLoginToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsAddedToStartUp())
+            {
+                //remove and update the text
+                RemoveFromStartup();
+                autoStartOnLoginToolStripMenuItem.Text = "Add to auto start on login";
+            }
+            else
+            {
+                AddToStartup();
+                autoStartOnLoginToolStripMenuItem.Text = "Remove from auto start on login";
+            }
         }
     }
 }
