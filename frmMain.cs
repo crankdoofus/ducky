@@ -183,9 +183,13 @@ namespace DuckDNS.NET
                     }
                 }
             }
-            lblStatus.Text = "Next check: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(minutes).ToShortTimeString(); ;
-            myNotifyIcon.BalloonTipText = "Next update: " + DateTime.Now.AddMinutes(minutes).ToShortTimeString();
-            myNotifyIcon.Text = "DuckDNS.NET \r\n Next Update: " +
+            else
+            {
+                myNotifyIcon.Icon = Properties.Resources.IconRed;
+            }
+            lblStatus.Text = "Check complete, Next run: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(minutes).ToShortTimeString(); ;
+            myNotifyIcon.BalloonTipText = "Next run: " + DateTime.Now.AddMinutes(minutes).ToShortTimeString();
+            myNotifyIcon.Text = "DuckDNS.NET \r\n Next run: " +
                                 DateTime.Now.AddMinutes(minutes).ToShortTimeString();
         }
 
