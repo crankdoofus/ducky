@@ -63,7 +63,7 @@ namespace DuckDNS.NET
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);
+                    //MessageBox.Show(e.Message);
                     Console.WriteLine($"Exception : {e}");
                     return returnValue;
                 }
@@ -131,7 +131,6 @@ namespace DuckDNS.NET
             autoStartOnLoginToolStripMenuItem.Text = IsAddedToStartUp() ? "Remove from auto start on login" : "Add to auto start on login";
 
             dgDomains.Update();
-            Application.DoEvents();
         }
 
 
@@ -142,51 +141,52 @@ namespace DuckDNS.NET
 
             bool bAtLeastOneFailure = false;
             mExternalIP = getExternalIP();
-            if (mExternalIP==null)
+            if (mExternalIP != null)
             {
-                return;
-            }
-            lblExtIP.Text = mExternalIP;
+                lblExtIP.Text = mExternalIP;
 
-            if (dgDomains.RowCount <= 0) return;
-            foreach (DataGridViewRow row in dgDomains.Rows)
-            {
-                string strIPToUse = row.Cells[2].Value.ToString();
-                if (row.Cells[2].Value.ToString().Contains("Auto"))
+                if (dgDomains.RowCount > 0)
                 {
-                    row.Cells[2].Value = "Auto (" + mExternalIP + ")";
-                    strIPToUse = mExternalIP;
+
+                    foreach (DataGridViewRow row in dgDomains.Rows)
+                    {
+                        string strIPToUse = row.Cells[2].Value.ToString();
+                        if (row.Cells[2].Value.ToString().Contains("Auto"))
+                        {
+                            row.Cells[2].Value = "Auto (" + mExternalIP + ")";
+                            strIPToUse = mExternalIP;
+                        }
+                        var getdom = string.Format("https://www.duckdns.org/update?domains={0}&token={1}&ip={2}",
+                            row.Cells[0].Value, row.Cells[1].Value, strIPToUse);
+                        if (UpdateDuckDNS(getdom))
+                        {
+                            row.Cells[4].Value = "Success";
+                            row.Cells[4].Style.ForeColor = Color.White;
+                            row.Cells[4].Style.BackColor = Color.Green;
+                        }
+                        else
+                        {
+                            row.Cells[4].Value = "Failure";
+                            row.Cells[4].Style.ForeColor = Color.Red;
+                            row.Cells[4].Style.BackColor = Color.Yellow;
+                            bAtLeastOneFailure = true;
+                        }
+                        row.Cells[3].Value = DateTime.Now.ToShortTimeString() + " " + DateTime.Now.ToShortDateString();
+                    }
+                    if (bAtLeastOneFailure)
+                    {
+                        myNotifyIcon.Icon = Properties.Resources.IconRed;
+                    }
+                    else
+                    {
+                        myNotifyIcon.Icon = Properties.Resources.IconYellow;
+                    }
                 }
-                var getdom = string.Format("https://www.duckdns.org/update?domains={0}&token={1}&ip={2}",
-                    row.Cells[0].Value, row.Cells[1].Value, strIPToUse);
-                if (UpdateDuckDNS(getdom))
-                {
-                    row.Cells[4].Value = "Success";
-                    row.Cells[4].Style.ForeColor = Color.White;
-                    row.Cells[4].Style.BackColor = Color.Green;
-                }
-                else
-                {
-                    row.Cells[4].Value = "Failure";
-                    row.Cells[4].Style.ForeColor = Color.Red;
-                    row.Cells[4].Style.BackColor = Color.Yellow;
-                    bAtLeastOneFailure = true;
-                }
-                row.Cells[3].Value = DateTime.Now.ToShortTimeString() + " " + DateTime.Now.ToShortDateString(); 
             }
-            if (bAtLeastOneFailure)
-            {
-                myNotifyIcon.Icon = Properties.Resources.IconRed; 
-            }
-            else
-            {
-                myNotifyIcon.Icon = Properties.Resources.IconYellow;
-            }
-            lblStatus.Text = "All domains checked..." + "Next check: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(minutes).ToShortTimeString(); ;
+            lblStatus.Text = "Next check: " + DateTime.Now.ToShortDateString() + " " + DateTime.Now.AddMinutes(minutes).ToShortTimeString(); ;
             myNotifyIcon.BalloonTipText = "Next update: " + DateTime.Now.AddMinutes(minutes).ToShortTimeString();
             myNotifyIcon.Text = "DuckDNS.NET \r\n Next Update: " +
                                 DateTime.Now.AddMinutes(minutes).ToShortTimeString();
-
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -283,7 +283,6 @@ namespace DuckDNS.NET
             {
                 //MessageBox.Show(e.Message + ", exiting ...");
                 Console.WriteLine($"Exception : {e}");
-                Application.Exit();
                 return null;
             }
         }
